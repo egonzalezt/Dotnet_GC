@@ -1,6 +1,6 @@
-# Dotnet GC
+# [Dotnet GC](https://egonzalezt.github.io/Dotnet_GC/)
 
-This repository's purpose is to explain simply what is .NET Garbage Collector and why is important to know about it
+This repository's purpose is to explain simply what is .NET Garbage Collector and why is important to know about it, please visit our [Github pages](https://egonzalezt.github.io/Dotnet_GC/)
 
 # What is GC
 
