@@ -1,25 +1,10 @@
 ---
 slug: welcome
 title: Welcome
-authors: [slorber, yangshun]
-tags: [facebook, hello, docusaurus]
+authors: [egonzalezt]
+tags: [hello, docusaurus]
 ---
 
-[Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).
+Welcome to dotnet GC, I decided to create this website to document all the interesting things that I learn on .NET Garbage Collector that helps me to profile and improve the performance of different applications.
 
-Simply add Markdown files (or folders) to the `blog` directory.
-
-Regular blog authors can be added to `authors.yml`.
-
-The blog post date can be extracted from filenames, such as:
-
-- `2019-05-30-welcome.md`
-- `2019-05-30-welcome/index.md`
-
-A blog post folder can be convenient to co-locate blog post images:
-
-![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg)
-
-The blog supports tags as well!
-
-**And if you don't want a blog**: just delete this directory, and use `blog: false` in your Docusaurus config.
+This website is made with Docusaurus to help me to document using markdown in an easy and simple way. any help will be appreciated and I will not hesitate to review the changes you generate in the PR to improve or make changes, you can visit my GitHub where you can find the code of this application.

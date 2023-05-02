@@ -9,8 +9,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Learn about .NET GC',
+  title: 'Profiling Blog',
+  tagline: 'Learn about .NET Profiling',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -59,13 +59,14 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Profiling Blog',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Profiling Blog Logo',
           src: 'img/logo.svg',
         },
         items: [
 
+          {to: '/docs/intro', label: 'Docs', position: 'left'},
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/egonzalezt/Dotnet_GC',
@@ -84,22 +85,17 @@ const config = {
                 label: 'GC DOCS',
                 to: '/docs/intro',
               },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Garbage Collector (GC)',
+                to: '/docs/category/garbage-collector-gc',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'OS Memory',
+                to: '/docs/category/os-memory',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Performance',
+                to: '/docs/category/performance',
               },
             ],
           },
@@ -122,6 +118,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['csharp'],
       },
     }),
 };
