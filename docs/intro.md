@@ -46,7 +46,7 @@ Garbage collection occurs when one of the following conditions is true:
 
 * The memory that's used by allocated objects on the managed heap surpasses an acceptable threshold. This threshold is continuously adjusted as the process runs.
 
-* Is possible to force the GC to collect memory but this process can impact the performance of the application for that reason this is option is not recommended on production applications. It is only recommended only for testing reasons
+* Is possible to force the GC to collect memory
 
     You can force the GC calling this functions
     ```csharp
@@ -54,6 +54,9 @@ Garbage collection occurs when one of the following conditions is true:
     GC.Collect();
     GC.WaitForPendingFinalizers();
     ```
+    :::danger
+      This process can impact the performance of the application for that reason this is option is not recommended on production applications. It is only recommended only for testing reasons
+    :::
 
 ## Managed heap
 
@@ -120,6 +123,10 @@ If you force the GC to run frequently, it can cause unnecessary overhead and per
 #### When is beneficial calling GC
 
 There are some situations where manually forcing the GC to run can be beneficial. For example, if your application creates a large number of short-lived objects, you can force the GC to run after the objects are no longer in use to free up memory more quickly. Similarly, if your application is about to enter a memory-intensive phase, you can force the GC to run to ensure that there is enough free memory available.
+
+:::caution
+Consider this option as the least viable unless it is strictly necessary and you are sure that it will not affect another flow, because if there are applications such as multiple workers or Apis this can negatively affect the application.
+:::
 
 ## [Unmanaged resources](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#unmanaged-resources)
 
