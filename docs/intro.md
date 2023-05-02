@@ -54,9 +54,9 @@ Garbage collection occurs when one of the following conditions is true:
     GC.Collect();
     GC.WaitForPendingFinalizers();
     ```
-    :::danger
-      This process can impact the performance of the application for that reason this is option is not recommended on production applications. It is only recommended only for testing reasons
-    :::
+:::danger
+This process can impact the performance of the application for that reason this is option is not recommended on production applications. It is only recommended only for testing reasons.
+:::
 
 ## Managed heap
 
