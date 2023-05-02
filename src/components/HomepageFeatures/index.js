@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/dotnet-bot_builder.svg').default,
     description: (
       <>
-        Is important to know about Garbage collector help you to build better programs and understand how you can avoid Memory leaks and build more efficient applications
+        Is important to know about Garbage collector this helps you to build better programs and understand how you can avoid Memory leaks and build more efficient applications
       </>
     ),
   },

@@ -101,11 +101,38 @@ If the list grows more reaching a size of `85,000` or more bytes are send it int
 
 Code used for this example: 
 
-<iframe src="https://try.dot.net/?fromGist=ce6f6a5540fe1186efd0a9a80f4d02f3" width="100%"></iframe>
+```csharp showLineNumbers 
+internal class Program
+{
+    static readonly List<string> list = new();
 
+    private static void Main()
+    {
+        while (true)
+        {
+            list.Add(GenRandomStr(10000));
+            Thread.Sleep(1);
+        }
+    }
+
+    static readonly Random rnd = new();
+
+    static string GenRandomStr(int length)
+    {
+        var chars = new List<char>();
+
+        for (var i = 0; i < length; i++)
+        {
+            var a = (char)rnd.Next(65, 122);
+            chars.Add(a);
+        }
+
+        return string.Concat(chars);
+    }
+}
+```
 :::note
-
-If the example dont load into your browser please visit the [**Source code**](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3)
+[**Source code**](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3)
 :::
 
 # References
