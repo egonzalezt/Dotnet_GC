@@ -1,0 +1,126 @@
+---
+sidebar_position: 2
+---
+
+Stack is a data structure that stores and manages a collection of elements in a particular order. It is a Last-In, First-Out (LIFO) data structure, which means that the last element added to the stack is the first one to be removed.
+
+The stack has two primary operations: push and pop. The push operation adds an element to the top of the stack, while the pop operation removes the top element from the stack.
+
+The stack is often used to implement function calls and returns in programming languages. When a function is called, the program pushes the current state onto the stack, including the return address and the values of the function's parameters. When the function returns, the program pops the saved state from the stack and resumes execution at the return address.
+
+The stack is also used for various other purposes, such as expression evaluation, parsing, and backtracking algorithms. It is a fundamental data structure in computer science and is used extensively in many programming languages and applications.
+
+## .NET usage
+
+One of the most common uses of the stack in .NET is in the execution of programs. The .NET runtime maintains a stack called the execution stack or the call stack, which is used to manage the execution of code in a program. Each time a method is called, the runtime pushes the current state of the method onto the stack, including its local variables, parameters, and return address. When the method returns, the runtime pops the saved state from the stack and resumes execution at the return address. This process continues until the main method of the program is complete.
+
+The stack is also used in .NET for managing exceptions. When an exception occurs, the runtime pushes the current state of the program onto the stack, including the call stack and the values of any local variables. This information is used to generate a stack trace that can be used to diagnose the cause of the exception.
+
+## Call Stack
+
+The call stack has a couple of responsabilities:
+
+1. Keep track of the method that control should be returned to afther the current method is finished executing
+
+    ```csharp showLineNumbers {7} 
+    using System;
+
+    namespace Stack
+    {
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                var date = new DateTime(2001,05,07);
+                var age = CalculateTotalYears(date);
+                Console.WriteLine(age);
+            }
+
+            private static int CalculateTotalYears(DateTime date)
+            {
+                var today = DateTime.Today;
+                var age = today.year - date.year;
+
+                if(date.Date > today.AddYears(-age))
+                {
+                    age--;
+                }
+                return age;
+            }
+        }
+    }
+    ```
+
+    ```mermaid
+    graph BT
+        subgraph main[Stack]
+        1["static void Main(string[] args)"]
+        linkStyle default fill-opacity:0,stroke-width:0px,stroke-opacity:0
+    end
+    ```
+
+    The current position on the stack is the main method, so each time a method is called in the code, it will be added to the call stack and each subsequent method can only be added to the call stack until the previous one has finished executing.
+
+    ```csharp showLineNumbers {10} 
+    using System;
+
+    namespace Stack
+    {
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                var date = new DateTime(2001,05,07);
+                var age = CalculateTotalYears(date);
+                Console.WriteLine(age);
+            }
+        }
+    }
+    ```
+
+    ```mermaid
+    graph BT
+        subgraph main[Stack]
+        1["CalculateTotalYears(DateTime date)"]---2["static void Main(string[] args)"]
+        linkStyle default fill-opacity:0,stroke-width:0px,stroke-opacity:0
+    end
+    ```
+
+    When the method `CalculateTotalYears(DateTime date)` finish execute is remove from the stack and the program continues with the other methods located from the Main method in this case `Console.WriteLine()`
+
+    ```csharp showLineNumbers {11} 
+    using System;
+
+    namespace Stack
+    {
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                var date = new DateTime(2001,05,07);
+                var age = CalculateTotalYears(date);
+                Console.WriteLine(age);
+            }
+        }
+    }
+    ```
+
+    ```mermaid
+    graph BT
+        subgraph main[Stack]
+        1["Console.WriteLine(age)"]---2["static void Main(string[] args)"]
+        linkStyle default fill-opacity:0,stroke-width:0px,stroke-opacity:0
+    end
+    ```
+
+    And finally the Main method only remains in the stack
+
+    ```mermaid
+    graph BT
+        subgraph main[Stack]
+        1["static void Main(string[] args)"]
+        linkStyle default fill-opacity:0,stroke-width:0px,stroke-opacity:0
+    end
+    ```
+
+2. Is responsible to keeping track of the local variables in your method

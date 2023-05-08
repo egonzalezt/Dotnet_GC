@@ -121,6 +121,10 @@ const config = {
         additionalLanguages: ['csharp'],
       },
     }),
+    markdown: {
+      mermaid: true,
+    },
+    themes: ['@docusaurus/theme-mermaid'],
 };
 
 module.exports = config;

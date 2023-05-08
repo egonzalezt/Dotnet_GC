@@ -1,6 +1,6 @@
 {
-  "label": "Os memory",
-  "position": 3,
+  "label": "Memory",
+  "position": 1,
   "link": {
     "type": "generated-index"
   }
