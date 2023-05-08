@@ -9,7 +9,7 @@ If you need to profile a running application that is not running on VisualStudio
 
 * dotnet-counters
 
-    dotnet-counters is a performance monitoring tool for first-level health monitoring and performance investigation. It observes performance counter values published via the EventCounter API. For example, you can quickly monitor things like the CPU usage or the rate of exceptions being thrown in your .NET Core application.
+    dotnet-counters is a performance monitoring tool for first-level health monitoring and performance investigation. It observes performance counter values published via the EventCounter API. For example, you can quickly monitor things like CPU usage or the rate of exceptions being thrown in your .NET Core application.
 
 * dotnet-dump
 
@@ -41,13 +41,13 @@ If you need to profile a running application that is not running on VisualStudio
 
 * PerfCollect
 
-    PerfCollect is a bash script you can use to collect traces with perf and LTTng for a more in-depth performance analysis of .NET apps running on Linux distributions.
+    PerfCollect is a bash script you can use to collect traces with perf and LTTng for more in-depth performance analysis of .NET apps running on Linux distributions.
 
-In this case we are going to focus on dotnet-counters, dotnet-dump, and dotnet-gcdump
+In this case, we are going to focus on dotnet-counters, dotnet-dump, and dotnet-gcdump
 
 ## Setup
 
-Before runnig our [Sample Code](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3) you need to install the following tools:
+Before running our [Sample Code](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3) you need to install the following tools:
 
 ### dotnet-counters
 ```bash
@@ -66,7 +66,7 @@ dotnet tool install --global dotnet-gcdump
 
 ## Monitoring memory usage
 
-The required tools mentioned before needs the PID of your .NET application to get the PID run:
+The required tools mentioned before need the PID of your .NET application to get the PID run:
 
 ```bash
 dotnet counters ps
@@ -102,7 +102,7 @@ If we want to find managed objects within the GC heap that caused a memory leak,
 
 ![dumpheap](./dumpheap.png)
 
-In this case at the end of the results we found a total of `4,818` on the method table(MT) of class `System.String` with a size of `63,990,168` bytes
+In this case, at the end of the results, we found a total of `4,818` on the method table(MT) of class `System. String` with a size of `63,990,168` bytes
 
 ![BigObjects](./bigobject.png)
 
@@ -114,7 +114,7 @@ dumpheap -type System.String
 
 ![dumpheapString](./dumpheapString.png)
 
-At the end of the list we found two possible candidates:
+At the end of the list, we found two possible candidates:
 
 ```bash
 7ff9c99e5c18     5        400 System.Collections.Generic.Dictionary<System.String, System.String>
@@ -123,7 +123,7 @@ At the end of the list we found two possible candidates:
 Total 4,864 objects, 64,026,184 bytes
 ```
 
-The results have sense if knowing that out code creates a list of strings and store a very long strong.
+The results have a sense of knowing that our code creates a list of strings and stores a very long strong.
 
 Use the `gcroot` command to print the chain of references that are keeping those objects alive
 
@@ -135,7 +135,7 @@ Running the command `gcroot 026cddf8e028` we get the following result:
 
 ```bash {7-10,25-28,31-34} showLineNumbers
 > gcroot 026cddf8e028
-Caching GC roots, this may take a while.
+Caching GC roots may take a while.
 Subsequent runs of this command will be faster.
 
 HandleTable:
@@ -172,7 +172,7 @@ Thread 3acc:
 Found 5 unique roots.
 ```
 
-If you check the `highlighted` blocks we finally found the reason why the memory is increasing and is not released by the GC, in this case the objects:
+If you check the `highlighted` blocks we finally found the reason why the memory is increasing and is not released by the GC, in this case, the objects:
 
 ```bash
 System.Collections.Generic.List<System.String>
@@ -180,7 +180,7 @@ System.Collections.Generic.List<System.String>
 -> 0000026cddf8e028 System.String
 ```
 
-are the responsibles of the memory leak, which means that we need to found a list of strings that are producing the leak in our [Code](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3)
+are responsible for the memory leak, which means that we need to find a list of strings that are producing the leak in our [Code](https://gist.github.com/egonzalezt/ce6f6a5540fe1186efd0a9a80f4d02f3)
 
 ## [dotnet-gcdump](https://devblogs.microsoft.com/dotnet/collecting-and-analyzing-memory-dumps/)
 
@@ -195,11 +195,11 @@ dotnet gcdump collect -p <PID> -o /your/custom/path/<PID>.gcdump
 
 ![gcdump](./gcdump.png)
 
-This command creates a file with extension `.gcdump` that can be open with VisualStudio
+This command creates a file with the extension `.gcdump` that can be opened with VisualStudio
 
 ![gcdumpvs](./gcdumpvs.png)
 
-In this case our biggest object is `List<String>` of size `193,442,434 byes` if you click on that object VisualStudio gives the PathToRoot and the results are exactly the same as the firt method using dotnet-dump, a list of strings are the responsibles:
+In this case, our biggest object is `List<String>` of size `193,442,434 byes` if you click on that object VisualStudio gives the PathToRoot and the results are the same as the first method using dotnet-dump, a list of strings are the responsible:
 
 ![gcdumpVsResults](./gcdumpVsResults.png)
 
@@ -218,7 +218,7 @@ And again the results are the same as shown in VisualStudio
 ![perfviewResults](./perfviewResults.png)
 
 :::tip
-The main reason why this code never releases memory is because when GC starts the process of Collecting Garbage, the `List<String>` still being use by the process and cannot be deleted, for that reason the list pass to the different generations Gen 0 > Gen 1 > Gen 2 or LOH, is important to keep in mind when the objects are going to be destroyed to avoid this problems.
+The main reason why this code never releases memory is that when GC starts the process of Collecting Garbage, the `List<String>` is still being used by the process and cannot be deleted, for that reason, the list passes to the different generations Gen 0 > Gen 1 > Gen 2 or LOH, is important to keep in mind when the objects are going to be destroyed to avoid these problems.
 :::
 
 ## References

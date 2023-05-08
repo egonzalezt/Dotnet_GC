@@ -12,9 +12,9 @@ In .NET [generations](/GC/Generations.md) uses heaps to locate the different obj
 
 ## Large Object Heap (LOH)
 
-The .NET garbage collector (GC) divides objects up into small and large objects. When an object is large, some of its attributes become more significant than if the object is small. For instance, compacting it, copying it in memory elsewhere on the heap can be expensive. Because of this, the garbage collector places large objects on the large object heap (LOH).
+The .NET garbage collector (GC) divides objects into small and large objects. When an object is large, some of its attributes become more significant than if the object is small. For instance, compacting it, and copying it in memory elsewhere on the heap can be expensive. Because of this, the garbage collector places large objects on the large object heap (LOH).
 
-When an object allocation request is for 85,000 or more bytes, the runtime allocates it on the large object heap (LOH), which is sometimes referred to as generation 3. Generation 3 is a physical generation that's logically collected as part of generation 2. Large objects belong to generation 2 because they are collected only during a generation 2 collection. Newly allocated objects form a new generation of objects and are implicitly generation 0 collections. However, if they survive, they get promoted to the next generation. When a garbage collection is triggered, the GC traces through the live objects and compacts them. The GC sweeps the LOH and makes a free list out of dead objects that can be reused later to satisfy large object allocation requests.
+When an object allocation request is for 85,000 or more bytes, the runtime allocates it on the large object heap (LOH), which is sometimes referred to as generation 3. Generation 3 is a physical generation that's logically collected as part of Generation 2. Large objects belong to Generation 2 because they are collected only during a Generation 2 collection. Newly allocated objects form a new generation of objects and are implicitly generation 0 collections. However, if they survive, they get promoted to the next generation. When a garbage collection is triggered, the GC traces through the live objects and compacts them. The GC sweeps the LOH and makes a free list out of dead objects that can be reused later to satisfy large object allocation requests.
 
 ## When LOH is collected?
 In general, a GC occurs under one of the following three conditions:
@@ -29,9 +29,9 @@ The GC.Collect method is called.
 
 If the parameterless GC.Collect() method is called or another overload is passed GC.MaxGeneration as an argument, the LOH is collected along with the rest of the managed heap.
 
-The system is in low memory situation.
+The system is in a low memory situation.
 
-This occurs when the garbage collector receives a high memory notification from the OS. If the garbage collector thinks that doing a generation 2 GC will be productive, it triggers one.
+This occurs when the garbage collector receives a high-memory notification from the OS. If the garbage collector thinks that doing a generation 2 GC will be productive, it triggers one.
 
 ## LOH performance implications
 
@@ -43,7 +43,7 @@ The CLR makes the guarantee that the memory for every new object it gives out is
 
 ### Collection cost.
 
-Because the LOH and generation 2 are collected together, if either one's threshold is exceeded, a generation 2 collection is triggered. If a generation 2 collection is triggered because of the LOH, generation 2 won't necessarily be much smaller after the GC. If there's not much data on generation 2, this has minimal impact. But if generation 2 is large, it can cause performance problems if many generation 2 GCs are triggered.
+Because the LOH and generation 2 are collected together, if either one's threshold is exceeded, a generation 2 collection is triggered. If a generation 2 collection is triggered because of the LOH, generation 2 won't necessarily be much smaller after the GC. If there's not much data on generation 2, this has minimal impact. But if generation 2 is large, it can cause performance problems if many generations 2 GCs are triggered.
 
 ### Array elements with reference types.
 

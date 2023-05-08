@@ -4,11 +4,11 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'What is Garbage Collector',
+    title: 'What you will learn',
     Svg: require('@site/static/img/dotnet_bot_presenting.svg').default,
     description: (
       <>
-        .NET's garbage collector manages the allocation and release of memory for your application. Each time you create a new object, the common language runtime allocates memory for the object from the managed heap.
+        You will learn about fundamental CPU and Memory issues as well as tips and recommendations for profiling applications with different tools to detect possible optimization problems and how to fix them.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/my-dotnet-bot-mod.svg').default,
     description: (
       <>
-        Memory is not infinite. Eventually the garbage collector must perform a collection in order to free some memory.
+        Resources are not infinite, is important to find the best method or way to make your programs more efficient because this helps you to reduce costs and problems.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/dotnet-bot_builder.svg').default,
     description: (
       <>
-        Is important to know about Garbage collector this helps you to build better programs and understand how you can avoid Memory leaks and build more efficient applications
+        Is important to know about the resources that are not unlimited in this case Hardware Resources to build better applications, because more efficient applications make happy to our customers.
       </>
     ),
   },

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-A heap is an area of pre-reserved computer main storage (memory) that a program process can use to store data in some variable amount that won't be known until the program is running. The heap is an area of memory available to allocate areas (“blocks”) of memory for the program. There is some “heap manager” library code which manages the heap for the program. The programmer makes requests to the heap manager, which in turn manages the internals of the heap.
+A heap is an area of pre-reserved computer main storage (memory) that a program process can use to store data in some variable amount that won't be known until the program is running. The heap is an area of memory available to allocate areas (“blocks”) of memory for the program. There is some “heap manager” library code that manages the heap for the program. The programmer makes requests to the heap manager, which in turn manages the internals of the heap.
 
 ```mermaid
 graph LR
@@ -64,7 +64,7 @@ In this code, the value type int is stored on the stack because it's a local var
 
 ## How it is possible to store value types on the Heap
 
-In .NET, value types such as int are typically stored on the stack when they are declared as local variables within a method, because they have a fixed size and are short-lived. However, value types can also be stored on the heap if they are boxed or allocated dynamically using the new keyword.
+In .NET, value types such as int are typically stored on the stack when they are declared as local variables within a method because they have a fixed size and are short-lived. However, value types can also be stored on the heap if they are boxed or allocated dynamically using the new keyword.
 
 ```csharp showLineNumbers
 object o = 42; // boxing an int value
