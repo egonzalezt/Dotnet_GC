@@ -82,16 +82,16 @@ const config = {
             title: 'Docs',
             items: [
               {
+                label: 'Memory',
+                to: '/docs/category/memory',
+              },
+              {
                 label: 'GC DOCS',
                 to: '/docs/intro',
               },
               {
                 label: 'Garbage Collector (GC)',
                 to: '/docs/category/garbage-collector-gc',
-              },
-              {
-                label: 'OS Memory',
-                to: '/docs/category/os-memory',
               },
               {
                 label: 'Performance',
