@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Types
 
-.NET GC has different types of GC depending of which kind of application is going to be build
+.NET GC has different types of GC depending on which kind of application is going to be built
 
 The garbage collector is self-tuning and can work in a wide variety of scenarios. However, you can set the type of garbage collection based on the characteristics of the workload. The CLR provides the following types of garbage collection:
 
@@ -29,7 +29,7 @@ By default, the .NET runtime chooses the appropriate GC mode based on the number
 
 ### Containers
 
-If you are running .NET containerized application the memory limits and cpu limits are base on the config of the container and not the real system specifications where the container is hosted
+If you are running .NET containerized application the memory limits and CPU limits are based on the config of the container and not the real system specifications where the container is hosted
 
 To learn more about containers please visit:
 
@@ -39,9 +39,9 @@ To learn more about containers please visit:
 
 ## Background garbage collection
 
-In background garbage collection (GC), ephemeral generations (0 and 1) are collected as needed while the collection of generation 2 is in progress. Background garbage collection is performed on one or more dedicated threads, depending on whether it's workstation or server GC, and applies only to generation 2 collections.
+In background garbage collection (GC), ephemeral generations (0 and 1) are collected as needed while the collection of generation 2 is in progress. Background garbage collection is performed on one or more dedicated threads, depending on whether it's a workstation or server GC, and applies only to generation 2 collections.
 
-In .NET, foreground garbage collection occurs when a collection on ephemeral generations is initiated during background garbage collection. When this happens, all managed threads are suspended as well and leads to a UI freeze. This is a "pure" blocking GC. Background garbage collection occurs automatically and runs in a separate thread from the application's main thread. When the background garbage collector detects that enough objects have been allocated in generation 0, it may initiate a foreground garbage collection on generation 0 or generation 1. 
+In .NET, foreground garbage collection occurs when a collection on ephemeral generations is initiated during background garbage collection. When this happens, all managed threads are suspended as well, and this leads to a UI freeze. This is a "pure" blocking GC. Background garbage collection occurs automatically and runs in a separate thread from the application's main thread. When the background garbage collector detects that enough objects have been allocated in generation 0, it may initiate a foreground garbage collection on generation 0 or generation 1. 
 
 During background garbage collection, the garbage collector thread frequently checks to see if a request for foreground garbage collection has been made. If it has, the background collection suspends itself to allow the foreground garbage collection to occur. Once the foreground garbage collection is complete, the dedicated background garbage collection thread and user threads resume.
 
@@ -54,8 +54,3 @@ Background workstation garbage collection uses one dedicated background garbage 
 ### Workstation Server GC 
 
 ![Workstation Server GC](./img/background-workstation-garbage-collection.png)
-
-
-
-
-

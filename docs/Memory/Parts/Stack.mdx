@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-Stack is a data structure that stores and manages a collection of elements in a particular order. It is a Last-In, First-Out (LIFO) data structure, which means that the last element added to the stack is the first one to be removed.
+A stack is a data structure that stores and manages a collection of elements in a particular order. It is a Last-In, First-Out (LIFO) data structure, which means that the last element added to the stack is the first one to be removed.
 
 The stack has two primary operations: push and pop. The push operation adds an element to the top of the stack, while the pop operation removes the top element from the stack.
 
@@ -18,9 +18,9 @@ The stack is also used in .NET for managing exceptions. When an exception occurs
 
 ## Call Stack
 
-The call stack has a couple of responsabilities:
+The call stack has a couple of responsibilities:
 
-1. Keep track of the method that control should be returned to afther the current method is finished executing
+1. Keep track of the method that control should be returned to after the current method is finished executing
 
     ```csharp showLineNumbers {7} 
     using System;
@@ -86,7 +86,7 @@ The call stack has a couple of responsabilities:
     end
     ```
 
-    When the method `CalculateTotalYears(DateTime date)` finish execute is remove from the stack and the program continues with the other methods located from the Main method in this case `Console.WriteLine()`
+    When the method `CalculateTotalYears(DateTime date)` finish execute is removed from the stack and the program continues with the other methods located from the Main method in this case `Console.WriteLine()`
 
     ```csharp showLineNumbers {11} 
     using System;
@@ -113,7 +113,7 @@ The call stack has a couple of responsabilities:
     end
     ```
 
-    And finally the Main method only remains in the stack
+    And finally, the Main method only remains in the stack
 
     ```mermaid
     graph BT

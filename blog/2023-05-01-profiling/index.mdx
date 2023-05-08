@@ -27,25 +27,25 @@ Tools available in the Performance Profiler include:
 
 ### Setup
 
-Is important to setup your application in release mode
+Is important to set up your application to release mode
 
 ![Release Mode](./releaseMode.png)
 
-Then start the profiler with Memory Usage Option
+Then start the profiler with the Memory Usage Option
 
 ![Release Mode](./MemoryUsageOption.png)
 
-When application starts you can se a plot with the metrics about memory usage of your application
+When the application starts you can see a plot with the metrics about the memory usage of your application
 
 ![Startup](./memorystartup.png)
 
 ### Snapshots
 
-Now your application is ready to take snapshots so see the if there is any memory leak
+Now your application is ready to take snapshots so see if there is any memory leak
 
 :::tip
 
-Is important to take snapshots when you see on the plot(Process Memory (Mb)) any significant increase on the memory
+Is important to take snapshots when you see on the plot(Process Memory (Mb)) any significant increase in the memory
 
 You can take snapshots during a diagnostic session to capture memory usage at particular moments. It's good to get a baseline snapshot of an app before a memory issue appears. You can take another snapshot after the first occurrence of the problem, and additional snapshots if you can repeat the scenario.
 :::
@@ -63,7 +63,7 @@ The numbers in the Snapshot panes show the objects and bytes in memory when each
 | 3 | The total number of bytes in memory when the snapshot was taken.|
 | 4 | The difference between the total size of memory objects in this snapshot and the previous snapshot. A positive number means the memory size of this snapshot is larger than the previous one, and a negative number means the size is smaller. Baseline means a snapshot is the first in a diagnostic session. No Difference means the difference is zero.|
 
-On each snapshot you can select the link to display a snapshot diff report.
+On each snapshot, you can select the link to display a snapshot diff report.
 
 ### Results
 
@@ -71,31 +71,31 @@ When you finish taking snapshots you can stop the process and see the results
 
 ![Stop](./stop.png)
 
-The results can show all the details of the different process, libraries or dependencies that your application may need to run
+The results can show all the details of the different processes, libraries, or dependencies that your application may need to run
 
 ![Results](./results.png)
 
-You can see the results base on the Objects or Heap Size, in this case if you choose one option located in HeapSize you will see the following result
+You can see the results base on the Objects or Heap Size, in this case, if you choose one option located in HeapSize you will see the following result
 
 ![ExploringResults](./exploringResults.png)
 
-In this case the object that consumes a lot of memory is a String using `24,768,598 bytes`, and if you see the button of the picture the application can show you the allocation tree that shows the functions or methods, in this case the possible leak is cause by a `List<String>`.
+In this case, the object that consumes a lot of memory is a String using `24,768,598 bytes`, and if you see the button of the picture the application can show you the allocation tree that shows the functions or methods, in this case, the possible leak is caused by a `List<String>`.
 
 :::danger
 
-Objects that cannot be deleted will be sent to `LOH`, the larger the memory size of the Large Object Heap, more expensive it will be to clean and destroy the Generation 2 and the LOH objects.
+Objects that cannot be deleted will be sent to `LOH`, the larger the memory size of the Large Object Heap, the more expensive it will be to clean and destroy the Generation 2 and the LOH objects.
 
 :::
 
-Finally you can see the different generations of the GC to detect if there is any possible problem with memory release or object destruction during the application runtime
+Finally, you can see the different generations of the GC to detect if there is any possible problem with memory release or object destruction during the application runtime
 
 ![Stop](./generations.png)
 
-In this case there are too many object type `string` which means that your application is not releasing strings and thats mens when the GC runs it does not detect any object to destroy, this reason is explained on the section [Performance Testing examples](/docs/PerformanceTesting/#examples)
+In this case, there are too many object types `string` which means that your application is not releasing strings and that's means when the GC runs it does not detect any object to destroy, this reason is explained in the section [Performance Testing examples](/docs/PerformanceTesting/#examples)
 
-Also this example explains how [Generations](/docs/GC/Generations) works because string is normally a short lived object that starts on **Generation 0** but in this case these strings located on a `List<string>` cannot be destroyed so are send it into **Generation 1** but the list grows more and more and is not destroyed send it into **Generation 2**.
+Also, this example explains how [Generations](/docs/GC/Generations) works because a string is normally a short-lived object that starts on **Generation 0** but in this case, these strings located on a `List<string>` cannot be destroyed so are send it into **Generation 1** but the list grows more and more and is not destroyed send it into **Generation 2**.
 
-If the list grows more reaching a size of `85,000` or more bytes are send it into the `LOH`
+If the list grows more reaching a size of `85,000` or more bytes are sent it into the `LOH`
 
 ## Code 
 

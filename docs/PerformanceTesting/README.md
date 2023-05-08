@@ -18,7 +18,7 @@ There are different methods to test and check if your .Net applications have a p
         // ...
     }
     ```
-    In this code, a FileStream object is created but is never disposed of of. This can result in a memory leak because the file stream will hold onto resources until it is disposed of of. To fix this, you can add a using statement to ensure that the file stream is disposed of when it is no longer needed:
+    In this code, a FileStream object is created but is never disposed of. This can result in a memory leak because the file stream will hold onto resources until it is disposed of. To fix this, you can add a using statement to ensure that the file stream is disposed of when it is no longer needed:
 
     ```csharp
     public void CreateFile()
@@ -39,7 +39,7 @@ There are different methods to test and check if your .Net applications have a p
         var bigObject = new byte[100000000]; //allocate a large byte array
         // do some work with the big object
         // ...
-        // forget to set bigObject to null or   dispose it
+        // forget to set bigObject to null or dispose it
     }
     ```
 
@@ -130,4 +130,3 @@ Please refer to this doc made by [Maoni0](https://github.com/Maoni0/mem-doc/blob
 * [MemoryDumpAnalyzer](https://devblogs.microsoft.com/visualstudio/managed-memory-dump-analyzers/): MemoryDumpAnalyzer is a free tool from Microsoft that can help analyze memory dumps and identify memory leaks and other memory-related issues in .NET applications. It provides a graphical user interface for analyzing memory dumps and identifying memory-related issues.
 
 These tools can help developers identify memory leaks and other memory-related issues in .NET applications and can aid in optimizing application performance and reducing memory usage.
-

@@ -66,7 +66,7 @@ flowchart TB
     end
 ```
 
-In this case `int` is a valueType because it just represents a value directly because these values are short-lived and have a defined memory size in this case `32-bit` for more information about valueTypes and their size please visit [OfficialDocumentation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types#built-in-value-types), but what happens with the objects, the type `object` doesn't have a static size o predefine size like `64-bit` for that reason objects are [referenceTypes](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/reference-types) these types uses the heap to store the data itself and uses the stack as ValueType as a pointer to save the Memory Address, for example, the object person is saved on the address `(0x22cdec)`
+In this case `int` is a valueType because it just represents a value directly because these values are short-lived and have a defined memory size in this case `32-bit` for more information about value types and their size please visit [OfficialDocumentation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types#built-in-value-types), but what happens with the objects, the type `object` doesn't have a static size o predefine size like `64-bit` for that reason objects are [referenceTypes](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/reference-types) these types uses the heap to store the data itself and uses the stack as ValueType as a pointer to save the Memory Address, for example, the object person is saved on the address `(0x22cdec)`
 
 ## Take Care making copies
 
@@ -184,7 +184,7 @@ flowchart TB
     end
 ```
 
-When the CalculateTotalYears method is removed from the stack, `DateTime` is no longer accessible and will remain until the GarbageCollector clears the stack.
+When the CalculateTotalYears method is removed from the stack, `DateTime` is no longer accessible and will remain until the garbage collector clears the stack.
 
 ## Value Types on Heap
 
@@ -205,7 +205,7 @@ namespace Stack
 }
 ```
 
-Using global variables are variables that need to be accessible from different parts of your code, and for that reason need to be created on the heap to still be alive during the class execution or program. Finally, objects that have different ValueTypes like `int`, `float`, `decimal` these variables and the object itself live on the heap.
+Using global variables are variables that need to be accessible from different parts of your code, and for that reason need to be created on the heap to still be alive during the class execution or program. Finally, objects that have different ValueTypes like `int`, `float`, and `decimal` are these variables and the object itself lives on the heap.
 
 ## Exceptions to the access rule
 
@@ -262,7 +262,7 @@ flowchart TB
     end
 ```
 
-maxAge and date are needed in the Anonymous function and the Main method so is needed to put these variables on the heap. Finally, when the Anonymous function ends all the objects on the heap that don't have a reference are destroyed by the GarbageCollector.
+maxAge and date are needed in the Anonymous function and the Main method so is needed to put these variables on the heap. Finally, when the Anonymous function ends all the objects on the heap that don't have a reference are destroyed by the garbage collector.
 
 ```mermaid
 flowchart TB
